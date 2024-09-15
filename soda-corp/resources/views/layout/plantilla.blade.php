@@ -13,6 +13,8 @@
 </head>
 
 <link rel="stylesheet" href="{{ asset('css/plantilla.css') }}">
+<link rel="stylesheet" href="{{ asset('css/plantillaRegistro.css') }}">
+
 @yield('style')<!-- Ruta del css -->
 
 <!-- Inicio menu lateral-->
@@ -27,8 +29,8 @@
                     <li class="menu-item">
                         <a href="#" class="menu-toggle">Registrar Estudiantes</a>
                         <ul class="submenu">
-                            <li class="opcionsubmenu"><a href="#">Registro individual</a></li>
-                            <li class="opcionsubmenu"><a href="#">Registrar por planilla</a></li>
+                        <li class="opcionsubmenu"><a href="{{ asset('docente/registrarestudiante') }}">Registro individual</a></li>
+                        <li class="opcionsubmenu"><a href="#">Registrar por planilla</a></li>
                         </ul>
                     </li>
                     <li>
