@@ -19,6 +19,12 @@ class estudiantes extends Controller
     {
         return view('docente.registrarestudiante');
     }
+
+
+    public function registrar()
+    {
+        return view('docente.registrarplanilla');
+    }
     /**
      * Store a newly created resource in storage.
      *

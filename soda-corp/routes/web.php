@@ -14,3 +14,5 @@ Route::get('/docente/registrarestudiante', [DocenteController::class, 'registrar
 
 Route::get('/docente/registrarestudiante', [estudiantes::class, 'create'])->name('registrarestudiante');
 Route::post('/estudiantes', [estudiantes::class, 'store'])->name('estudiantes.store');
+
+Route::get('/docente/registrarplanilla', [estudiantes::class, 'registrar'])->name('registrarestudiantes');

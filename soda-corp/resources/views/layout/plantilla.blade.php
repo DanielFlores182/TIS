@@ -30,7 +30,7 @@
                         <a href="#" class="menu-toggle">Registrar Estudiantes</a>
                         <ul class="submenu">
                         <li class="opcionsubmenu"><a href="{{ asset('docente/registrarestudiante') }}">Registro individual</a></li>
-                        <li class="opcionsubmenu"><a href="#">Registrar por planilla</a></li>
+                        <li class="opcionsubmenu"><a href="{{ asset('docente/registrarplanilla') }}">Registrar por planilla</a></li>
                         </ul>
                     </li>
                     <li>
