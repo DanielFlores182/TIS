@@ -1,218 +1,243 @@
 -- -------------------------------------------------------------------------
 -- PostgreSQL SQL create tables
--- exported at Thu Sep 12 18:16:56 BOT 2024 with easyDesigner
+-- exported at Mon Sep 16 12:10:38 BOT 2024 with easyDesigner
 -- -------------------------------------------------------------------------
 
 -- -------------------------------------------------------------------------
--- Table: UserN
+-- Table: user_n
 -- -------------------------------------------------------------------------
-CREATE TABLE "UserN" (
-  "id_usuario" INTEGER NOT NULL,
+CREATE TABLE "user_n" (
+  "id_usuario" bigserial NOT NULL,
   "nombre" CHARACTER VARYING NOT NULL,
   "clave" CHARACTER VARYING NOT NULL,
   "tipo" INTEGER NOT NULL,
+  "correo" CHARACTER VARYING NOT NULL,
   PRIMARY KEY ("id_usuario")
 );
 
 -- -------------------------------------------------------------------------
--- Table: Grupo
+-- Table: estudiante
 -- -------------------------------------------------------------------------
-CREATE TABLE "Grupo" (
+CREATE TABLE "estudiante" (
+  "id_usuario" INTEGER NOT NULL,
+  "cod_sis" INTEGER NOT NULL,
+  PRIMARY KEY ("id_usuario")
+);
+
+-- -------------------------------------------------------------------------
+-- Table: docente
+-- -------------------------------------------------------------------------
+CREATE TABLE "docente" (
+  "id_usuario" INTEGER NOT NULL,
+  "grupo_materia" INTEGER NULL,
+  PRIMARY KEY ("id_usuario")
+);
+
+-- -------------------------------------------------------------------------
+-- Table: grupo_estudiante
+-- -------------------------------------------------------------------------
+CREATE TABLE "grupo_estudiante" (
+  "id_estudiante" INTEGER NOT NULL,
+  "grupo_nombre" CHARACTER VARYING NOT NULL,
+  "grupo_id_docente" INTEGER NOT NULL,
+  "rol" INTEGER NOT NULL,
+  PRIMARY KEY ("id_estudiante", "grupo_nombre", "grupo_id_docente")
+);
+
+-- -------------------------------------------------------------------------
+-- Table: grupo
+-- -------------------------------------------------------------------------
+CREATE TABLE "grupo" (
   "nombre" CHARACTER VARYING NOT NULL,
-  "Docente_userN_id_contacto" INTEGER NOT NULL,
-  "descripcion" CHARACTER VARYING NULL,
-  PRIMARY KEY ("nombre", "Docente_userN_id_contacto")
+  "id_docente" INTEGER NOT NULL,
+  "descripcion" CHARACTER VARYING NOT NULL,
+  PRIMARY KEY ("nombre", "id_docente")
 );
 
 -- -------------------------------------------------------------------------
--- Table: Plan
+-- Table: plan
 -- -------------------------------------------------------------------------
-CREATE TABLE "Plan" (
-  "Grupo_nombre" CHARACTER VARYING NOT NULL,
-  "Grupo_Docente_userN_id_contacto" INTEGER NOT NULL,
+CREATE TABLE "plan" (
+  "grupo_nombre" CHARACTER VARYING NOT NULL,
+  "grupo_id_docente" INTEGER NOT NULL,
   "tipo_plan" INTEGER NOT NULL,
-  "descripcion" CHARACTER VARYING NULL,
-  PRIMARY KEY ("Grupo_nombre", "Grupo_Docente_userN_id_contacto")
+  "descripcion" VARCHAR(255) NOT NULL,
+  "fecha_ini" DATE NULL,
+  "fecha_fin" DATE NULL,
+  PRIMARY KEY ("grupo_nombre", "grupo_id_docente")
 );
 
 -- -------------------------------------------------------------------------
--- Table: Docente
+-- Table: tipo_plan
 -- -------------------------------------------------------------------------
-CREATE TABLE "Docente" (
-  "userN_id_contacto" INTEGER NOT NULL,
-  PRIMARY KEY ("userN_id_contacto")
-);
-
--- -------------------------------------------------------------------------
--- Table: Estudiante
--- -------------------------------------------------------------------------
-CREATE TABLE "Estudiante" (
-  "userN_id_contacto" INTEGER NOT NULL,
-  PRIMARY KEY ("userN_id_contacto")
-);
-
--- -------------------------------------------------------------------------
--- Table: Tarea
--- -------------------------------------------------------------------------
-CREATE TABLE "Tarea" (
-  "Plan_Grupo_nombre" CHARACTER VARYING NOT NULL,
-  "Plan_Grupo_Docente_userN_id_contacto" INTEGER NOT NULL,
-  "Estudiante_userN_id_contacto" INTEGER NOT NULL,
-  "id_tarea" INTEGER NULL,
-  "detalle" CHARACTER VARYING NULL,
-  "archivo" BYTEA NULL,
-  "path" CHARACTER VARYING NULL,
-  PRIMARY KEY ("Plan_Grupo_nombre", "Plan_Grupo_Docente_userN_id_contacto", "Estudiante_userN_id_contacto")
-);
-
--- -------------------------------------------------------------------------
--- Table: Evaluacion
--- -------------------------------------------------------------------------
-CREATE TABLE "Evaluacion" (
-  "Plan_Grupo_nombre" CHARACTER VARYING NOT NULL,
-  "Plan_Grupo_Docente_userN_id_contacto" INTEGER NOT NULL,
-  "tipo_evaluacion" INTEGER NULL,
-  "calificacion" INTEGER NULL,
-  "descripcion" CHARACTER VARYING NULL,
-  PRIMARY KEY ("Plan_Grupo_nombre", "Plan_Grupo_Docente_userN_id_contacto")
-);
-
--- -------------------------------------------------------------------------
--- Table: Grupo_estu
--- -------------------------------------------------------------------------
-CREATE TABLE "Grupo_estu" (
-  "id estudiante" INTEGER NOT NULL,
-  "Grupo_nombre" CHARACTER VARYING NOT NULL,
-  "Grupo_Docente_userN_id_contacto" INTEGER NOT NULL,
-  "rol" INTEGER NULL,
-  PRIMARY KEY ("id estudiante", "Grupo_nombre", "Grupo_Docente_userN_id_contacto")
-);
-
--- -------------------------------------------------------------------------
--- Table: Tipo_plan
--- -------------------------------------------------------------------------
-CREATE TABLE "Tipo_plan" (
-  "id_plan" INTEGER NOT NULL,
-  "nombre" CHARACTER VARYING NULL,
-  "detalle" CHARACTER VARYING NULL,
-  "entregable" CHARACTER VARYING NULL,
+CREATE TABLE "tipo_plan" (
+  "id_plan" bigserial NOT NULL,
+  "nombre" CHARACTER VARYING NOT NULL,
+  "detalle" CHARACTER VARYING NOT NULL,
+  "requerimiento" INTEGER NULL,
   PRIMARY KEY ("id_plan")
 );
 
 -- -------------------------------------------------------------------------
--- Table: Evauacion_cruzada
+-- Table: tarea
 -- -------------------------------------------------------------------------
-CREATE TABLE "Evauacion_cruzada" (
-  "Evaluacion_Plan_Grupo_nombre" CHARACTER VARYING NOT NULL,
-  "Evaluacion_Plan_Grupo_Docente_userN_id_contacto" INTEGER NOT NULL,
-  "Grupo_nombre" CHARACTER VARYING NOT NULL,
-  "Grupo_Docente_userN_id_contacto" INTEGER NOT NULL,
-  PRIMARY KEY ("Evaluacion_Plan_Grupo_nombre", "Evaluacion_Plan_Grupo_Docente_userN_id_contacto")
+CREATE TABLE "tarea" (
+  "plan_grupo_nombre" CHARACTER VARYING NOT NULL,
+  "plan_grupo_id_docente" INTEGER NOT NULL,
+  "id_estudiante" INTEGER NOT NULL,
+  "id_tarea" bigserial NOT NULL,
+  "detalle" CHARACTER VARYING NOT NULL,
+  "archivo" BYTEA NULL,
+  "path" CHARACTER VARYING NULL,
+  PRIMARY KEY ("plan_grupo_nombre", "plan_grupo_id_docente", "id_estudiante")
 );
 
 -- -------------------------------------------------------------------------
--- Table: Evaluacion_pares
+-- Table: evaluacion
 -- -------------------------------------------------------------------------
-CREATE TABLE "Evaluacion_pares" (
-  "Evaluacion_Plan_Grupo_nombre" CHARACTER VARYING NOT NULL,
-  "Evaluacion_Plan_Grupo_Docente_userN_id_contacto" INTEGER NOT NULL,
-  "evaluador" INTEGER NOT NULL,
-  "evaluado" INTEGER NULL,
-  PRIMARY KEY ("Evaluacion_Plan_Grupo_nombre", "Evaluacion_Plan_Grupo_Docente_userN_id_contacto")
+CREATE TABLE "evaluacion" (
+  "plan_grupo_nombre" CHARACTER VARYING NOT NULL,
+  "plan_grupo_id_docente" INTEGER NOT NULL,
+  "tipo_evaluacion" INTEGER NOT NULL,
+  "calificacion" INTEGER NOT NULL,
+  "descripcion" CHARACTER VARYING NOT NULL,
+  PRIMARY KEY ("plan_grupo_nombre", "plan_grupo_id_docente")
 );
 
 -- -------------------------------------------------------------------------
--- Relations for table: Grupo
+-- Table: evaluacion_pares
 -- -------------------------------------------------------------------------
-ALTER TABLE "Grupo" ADD FOREIGN KEY ("Docente_userN_id_contacto") 
-    REFERENCES "Docente" ("userN_id_contacto")
+CREATE TABLE "evaluacion_pares" (
+  "evaluacion_plan_grupo_nombre" CHARACTER VARYING NOT NULL,
+  "evaluacion_plan_grupo_id_docente" INTEGER NOT NULL,
+  "id_estudiante" INTEGER NOT NULL,
+  "evaluado" INTEGER NOT NULL,
+  PRIMARY KEY ("evaluacion_plan_grupo_nombre", "evaluacion_plan_grupo_id_docente", "id_estudiante", "evaluado")
+);
+
+-- -------------------------------------------------------------------------
+-- Table: evaluacion_cruzada
+-- -------------------------------------------------------------------------
+CREATE TABLE "evaluacion_cruzada" (
+  "evaluacion_plan_grupo_nombre" CHARACTER VARYING NOT NULL,
+  "evaluacion_plan_grupo_id_docente" INTEGER NOT NULL,
+  "grupo_nombre" CHARACTER VARYING NOT NULL,
+  "grupo_id_docente" INTEGER NOT NULL,
+  PRIMARY KEY ("evaluacion_plan_grupo_nombre", "evaluacion_plan_grupo_id_docente")
+);
+
+-- -------------------------------------------------------------------------
+-- Table: acta
+-- -------------------------------------------------------------------------
+CREATE TABLE "acta" (
+  "plan_grupo_nombre" CHARACTER VARYING NOT NULL,
+  "plan_grupo_id_docente" INTEGER NOT NULL,
+  "id_acta" bigserial NOT NULL,
+  "fecha" DATE NULL,
+  "descripcion" CHARACTER VARYING NULL,
+  PRIMARY KEY ("plan_grupo_nombre", "plan_grupo_id_docente", "id_acta")
+);
+
+-- -------------------------------------------------------------------------
+-- Relations for table: estudiante
+-- -------------------------------------------------------------------------
+ALTER TABLE "estudiante" ADD FOREIGN KEY ("id_usuario") 
+    REFERENCES "user_n" ("id_usuario")
       ON DELETE NO ACTION
       ON UPDATE NO ACTION;
 
 -- -------------------------------------------------------------------------
--- Relations for table: Plan
+-- Relations for table: docente
 -- -------------------------------------------------------------------------
-ALTER TABLE "Plan" ADD FOREIGN KEY ("tipo_plan") 
-    REFERENCES "Tipo_plan" ("id_plan")
-      ON DELETE NO ACTION
-      ON UPDATE NO ACTION;
-ALTER TABLE "Plan" ADD FOREIGN KEY ("Grupo_nombre", "Grupo_Docente_userN_id_contacto") 
-    REFERENCES "Grupo" ("nombre", "Docente_userN_id_contacto")
+ALTER TABLE "docente" ADD FOREIGN KEY ("id_usuario") 
+    REFERENCES "user_n" ("id_usuario")
       ON DELETE NO ACTION
       ON UPDATE NO ACTION;
 
 -- -------------------------------------------------------------------------
--- Relations for table: Docente
+-- Relations for table: grupo_estudiante
 -- -------------------------------------------------------------------------
-ALTER TABLE "Docente" ADD FOREIGN KEY ("userN_id_contacto") 
-    REFERENCES "UserN" ("id_usuario")
+ALTER TABLE "grupo_estudiante" ADD FOREIGN KEY ("id_estudiante") 
+    REFERENCES "estudiante" ("id_usuario")
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
+ALTER TABLE "grupo_estudiante" ADD FOREIGN KEY ("grupo_nombre", "grupo_id_docente") 
+    REFERENCES "grupo" ("nombre", "id_docente")
       ON DELETE NO ACTION
       ON UPDATE NO ACTION;
 
 -- -------------------------------------------------------------------------
--- Relations for table: Estudiante
+-- Relations for table: grupo
 -- -------------------------------------------------------------------------
-ALTER TABLE "Estudiante" ADD FOREIGN KEY ("userN_id_contacto") 
-    REFERENCES "UserN" ("id_usuario")
+ALTER TABLE "grupo" ADD FOREIGN KEY ("id_docente") 
+    REFERENCES "docente" ("id_usuario")
       ON DELETE NO ACTION
       ON UPDATE NO ACTION;
 
 -- -------------------------------------------------------------------------
--- Relations for table: Tarea
+-- Relations for table: plan
 -- -------------------------------------------------------------------------
-ALTER TABLE "Tarea" ADD FOREIGN KEY ("Plan_Grupo_nombre", "Plan_Grupo_Docente_userN_id_contacto") 
-    REFERENCES "Plan" ("Grupo_nombre", "Grupo_Docente_userN_id_contacto")
+ALTER TABLE "plan" ADD FOREIGN KEY ("grupo_nombre", "grupo_id_docente") 
+    REFERENCES "grupo" ("nombre", "id_docente")
       ON DELETE NO ACTION
       ON UPDATE NO ACTION;
-ALTER TABLE "Tarea" ADD FOREIGN KEY ("Estudiante_userN_id_contacto") 
-    REFERENCES "Estudiante" ("userN_id_contacto")
-      ON DELETE NO ACTION
-      ON UPDATE NO ACTION;
-
--- -------------------------------------------------------------------------
--- Relations for table: Evaluacion
--- -------------------------------------------------------------------------
-ALTER TABLE "Evaluacion" ADD FOREIGN KEY ("Plan_Grupo_nombre", "Plan_Grupo_Docente_userN_id_contacto") 
-    REFERENCES "Plan" ("Grupo_nombre", "Grupo_Docente_userN_id_contacto")
+ALTER TABLE "plan" ADD FOREIGN KEY ("tipo_plan") 
+    REFERENCES "tipo_plan" ("id_plan")
       ON DELETE NO ACTION
       ON UPDATE NO ACTION;
 
 -- -------------------------------------------------------------------------
--- Relations for table: Grupo_estu
+-- Relations for table: tarea
 -- -------------------------------------------------------------------------
-ALTER TABLE "Grupo_estu" ADD FOREIGN KEY ("id estudiante") 
-    REFERENCES "Estudiante" ("userN_id_contacto")
+ALTER TABLE "tarea" ADD FOREIGN KEY ("plan_grupo_nombre", "plan_grupo_id_docente") 
+    REFERENCES "plan" ("grupo_nombre", "grupo_id_docente")
       ON DELETE NO ACTION
       ON UPDATE NO ACTION;
-ALTER TABLE "Grupo_estu" ADD FOREIGN KEY ("Grupo_nombre", "Grupo_Docente_userN_id_contacto") 
-    REFERENCES "Grupo" ("nombre", "Docente_userN_id_contacto")
+ALTER TABLE "tarea" ADD FOREIGN KEY ("id_estudiante") 
+    REFERENCES "estudiante" ("id_usuario")
       ON DELETE NO ACTION
       ON UPDATE NO ACTION;
 
 -- -------------------------------------------------------------------------
--- Relations for table: Evauacion_cruzada
+-- Relations for table: evaluacion
 -- -------------------------------------------------------------------------
-ALTER TABLE "Evauacion_cruzada" ADD FOREIGN KEY ("Grupo_nombre", "Grupo_Docente_userN_id_contacto") 
-    REFERENCES "Grupo" ("nombre", "Docente_userN_id_contacto")
-      ON DELETE NO ACTION
-      ON UPDATE NO ACTION;
-ALTER TABLE "Evauacion_cruzada" ADD FOREIGN KEY ("Evaluacion_Plan_Grupo_nombre", "Evaluacion_Plan_Grupo_Docente_userN_id_contacto") 
-    REFERENCES "Evaluacion" ("Plan_Grupo_nombre", "Plan_Grupo_Docente_userN_id_contacto")
+ALTER TABLE "evaluacion" ADD FOREIGN KEY ("plan_grupo_nombre", "plan_grupo_id_docente") 
+    REFERENCES "plan" ("grupo_nombre", "grupo_id_docente")
       ON DELETE NO ACTION
       ON UPDATE NO ACTION;
 
 -- -------------------------------------------------------------------------
--- Relations for table: Evaluacion_pares
+-- Relations for table: evaluacion_pares
 -- -------------------------------------------------------------------------
-ALTER TABLE "Evaluacion_pares" ADD FOREIGN KEY ("Evaluacion_Plan_Grupo_nombre", "Evaluacion_Plan_Grupo_Docente_userN_id_contacto") 
-    REFERENCES "Evaluacion" ("Plan_Grupo_nombre", "Plan_Grupo_Docente_userN_id_contacto")
+ALTER TABLE "evaluacion_pares" ADD FOREIGN KEY ("evaluacion_plan_grupo_nombre", "evaluacion_plan_grupo_id_docente") 
+    REFERENCES "evaluacion" ("plan_grupo_nombre", "plan_grupo_id_docente")
       ON DELETE NO ACTION
       ON UPDATE NO ACTION;
-ALTER TABLE "Evaluacion_pares" ADD FOREIGN KEY ("evaluador") 
-    REFERENCES "Estudiante" ("userN_id_contacto")
+ALTER TABLE "evaluacion_pares" ADD FOREIGN KEY ("id_estudiante") 
+    REFERENCES "estudiante" ("id_usuario")
       ON DELETE NO ACTION
       ON UPDATE NO ACTION;
-ALTER TABLE "Evaluacion_pares" ADD FOREIGN KEY ("evaluado") 
-    REFERENCES "Estudiante" ("userN_id_contacto")
+ALTER TABLE "evaluacion_pares" ADD FOREIGN KEY ("evaluado") 
+    REFERENCES "estudiante" ("id_usuario")
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
+
+-- -------------------------------------------------------------------------
+-- Relations for table: evaluacion_cruzada
+-- -------------------------------------------------------------------------
+ALTER TABLE "evaluacion_cruzada" ADD FOREIGN KEY ("evaluacion_plan_grupo_nombre", "evaluacion_plan_grupo_id_docente") 
+    REFERENCES "evaluacion" ("plan_grupo_nombre", "plan_grupo_id_docente")
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
+ALTER TABLE "evaluacion_cruzada" ADD FOREIGN KEY ("grupo_nombre", "grupo_id_docente") 
+    REFERENCES "grupo" ("nombre", "id_docente")
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
+
+-- -------------------------------------------------------------------------
+-- Relations for table: acta
+-- -------------------------------------------------------------------------
+ALTER TABLE "acta" ADD FOREIGN KEY ("plan_grupo_nombre", "plan_grupo_id_docente") 
+    REFERENCES "plan" ("grupo_nombre", "grupo_id_docente")
       ON DELETE NO ACTION
       ON UPDATE NO ACTION;
