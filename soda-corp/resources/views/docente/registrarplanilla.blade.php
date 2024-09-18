@@ -28,7 +28,8 @@
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>CodSis</th>
-                    <th>Carnet</th>
+                    <th>Correo</th>
+                    <th>Carrera</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,7 +40,8 @@
                             <td>{{ $estudiante->nombre }}</td>
                             <td>{{ $estudiante->apellido }}</td>
                             <td>{{ $estudiante->codsis }}</td>
-                            <td>{{ $estudiante->carnet }}</td>
+                            <td>{{ $estudiante->correo }}</td>
+                            <td>{{ $estudiante->carrera}}</td>
                         </tr>
                     @endforeach
                 @endif
