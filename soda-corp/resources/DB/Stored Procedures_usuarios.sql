@@ -295,3 +295,54 @@ BEGIN
 END;
 $$;
 ----------------------------------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------------------------------
+CREATE OR REPLACE PROCEDURE add_docente(p_nombre VARCHAR, p_correo VARCHAR, p_grupo_materia INTEGER, p_clave VARCHAR DEFAULT NULL)
+LANGUAGE plpgsql AS $$
+DECLARE
+    -- Declaramos una variable para almacenar el id_contacto que se autoincrementa
+    new_id_usuario INTEGER;
+BEGIN
+    -- Si la clave es NULL o está vacía, asignamos un valor por defecto
+    IF p_clave IS NULL OR p_clave = '' THEN
+        p_clave := 'publica'; -- Valor por defecto
+    END IF;
+
+    -- Insertamos el nuevo docente en la tabla user_n con el tipo = 1 (docente)
+    INSERT INTO user_n (nombre, clave, tipo, correo)
+    VALUES (p_nombre, p_clave, 1, p_correo)
+    RETURNING id_usuario INTO new_id_usuario; -- Guardamos el id autoincrementado
+    
+	INSERT INTO docente (id_usuario, grupo_materia)
+        VALUES (new_id_usuario, p_grupo_materia);
+       
+    -- Mensaje de confirmación
+    RAISE NOTICE 'docente %  ha sido insertado con éxito', p_nombre;
+END;
+$$;
+-----------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------
+CREATE OR REPLACE PROCEDURE add_student(p_nombre VARCHAR, p_codsis INTEGER, p_correo VARCHAR, p_carrera INTEGER, p_clave VARCHAR DEFAULT NULL)
+LANGUAGE plpgsql AS $$
+DECLARE
+    -- Declaramos una variable para almacenar el id_contacto que se autoincrementa
+    new_id_usuario INTEGER;
+BEGIN
+    -- Si la clave es NULL o está vacía, asignamos un valor por defecto
+    IF p_clave IS NULL OR p_clave = '' THEN
+        p_clave := 'publica'; -- Valor por defecto
+    END IF;
+
+    -- Insertamos el nuevo estudiante en la tabla user_n con el tipo = 2 (estudiante)
+    INSERT INTO user_n (nombre, clave, tipo, correo)
+    VALUES (p_nombre, p_clave, 2, p_correo)
+    RETURNING id_usuario INTO new_id_usuario; -- Guardamos el id autoincrementado
+    
+	INSERT INTO estudiante (id_usuario, cod_sis, carrera)
+        VALUES (new_id_usuario, p_codsis, p_carrera);
+        RAISE NOTICE 'El usuario ha sido insertado como estudiante con id %', new_id_usuario;
+    -- Mensaje de confirmación
+    RAISE NOTICE 'Estudiante % con código % ha sido insertado con éxito', p_nombre, p_codsis;
+END;
+$$;
+--------------------------------------------------------------------------------------------------------------------------------------------------
