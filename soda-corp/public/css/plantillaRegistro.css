@@ -1,0 +1,103 @@
+/* Contenedor del formulario */
+
+.container {
+    background-color: #000630;
+    /* Fondo oscuro */
+    padding: 20px;
+    border-radius: 20px;
+    /* Bordes redondeados */
+    width: 400px;
+    /* Ancho fijo del formulario */
+    margin: 100px 0 0 200px;
+    /* Centrado horizontal */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    /* Sombra suave */
+    text-align: center;
+    /* Centrar el contenido */
+}
+
+
+/* Título del formulario */
+
+.container h1 {
+    color: white;
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+
+/* Estilo de los campos del formulario */
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+    /* Alinea el texto de las etiquetas a la izquierda */
+}
+
+.form-group label {
+    font-weight: bold;
+    color: #dcdcdc;
+    /* Color de las etiquetas */
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 30px;
+    /* Bordes redondeados para los inputs */
+    border: none;
+    background-color: #d3d3d3;
+    /* Color de fondo de los inputs */
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease;
+}
+
+
+/* Cambia el color de fondo del campo cuando se enfoca */
+
+.form-group input:focus {
+    background-color: #bdbdbd;
+    outline: none;
+    /* Elimina el borde predeterminado */
+}
+
+
+/* Botones */
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 30px;
+    /* Botones redondeados */
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    width: 120px;
+    /* Ancho de los botones */
+    margin: 5px;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #28a745;
+    /* Botón verde */
+}
+
+.btn-primary:hover {
+    background-color: #218838;
+    /* Botón verde oscuro al pasar el ratón */
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    /* Botón rojo */
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    /* Botón rojo oscuro al pasar el ratón */
+}
