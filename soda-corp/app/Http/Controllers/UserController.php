@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class UserController extends Controller
 {
     public function index(){
-        $users = User:: all ();
-        return users;
+        $users = User::all();
+        return $users;
     }
     public function store(Request $request){
         $user = new User($request);
@@ -21,6 +22,6 @@ class UserController extends Controller
     }
     public function show($id){
         $user = User:: find($id);
-        return user;
+        return $user;
     }
 }
