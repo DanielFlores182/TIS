@@ -17,10 +17,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// routes/web.php
+// Ruta para mostrar la vista registrar_grupo
 Route::get('/registro', function () {
     return view('registrar_grupo');
 })->name('registro');
+
+// Ruta para mostrar la vista informacion_grupo
+Route::get('/informacion', function () {
+    return view('informacion_grupo');
+})->name('informacion');
 
 Route::controller(Test::class)->group(function () {
     Route::get('/test', 'test');
