@@ -10,7 +10,7 @@
     <div class="container">
         <h1>Registro de planilla de estudiantes</h1>
         
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form action="{{route('registrarestudiantes')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="archivo">Seleccionar archivo:</label>
@@ -25,8 +25,7 @@
         <table class="table table-striped mt-4">
             <thead>
                 <tr>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
+                    <th>Nombres</th>               
                     <th>CodSis</th>
                     <th>Correo</th>
                     <th>Carrera</th>
@@ -37,8 +36,7 @@
                 @if(isset($estudiantes))
                     @foreach($estudiantes as $estudiante)
                         <tr>
-                            <td>{{ $estudiante->nombre }}</td>
-                            <td>{{ $estudiante->apellido }}</td>
+                            <td>{{ $estudiante->nombres }}</td>              
                             <td>{{ $estudiante->codsis }}</td>
                             <td>{{ $estudiante->correo }}</td>
                             <td>{{ $estudiante->carrera}}</td>

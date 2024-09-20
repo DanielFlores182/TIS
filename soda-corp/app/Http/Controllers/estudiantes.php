@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\scripts\planilla;
 class estudiantes extends Controller
 {
     /**
@@ -20,7 +20,33 @@ class estudiantes extends Controller
         return view('docente.registrarestudiante');
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function registrarPlanilla(Request $request)
+    {
+        $extend_file = $request->file('archivo')->getClientOriginalExtension();
+        $name_file = 'data_sheet.'.$extend_file;
+        $request->file('archivo')->storeAs('public/files/',$name_file);
+        $reader = new planilla();
+        $data = $reader->leerExcel('C:\Users\chamb\Documents\GitHub\TIS\soda-corp\public\storage\files\\'.$name_file);
+        foreach ($data as $d) {
+            $estudiante = new user();
+            $estudiante->create([
+                'nombre' => $d->nombre_estudiante
+            ]);
 
+            estudiande::create([
+                'id_estudiante' => $estudiante->id_user,
+                'cod_sis' => $d->cod_sis
+            ]);
+
+        }
+        return response()->json(["data" => json_encode($data)], 200);
+    }
     public function registrar()
     {
         return view('docente.registrarplanilla');
@@ -36,21 +62,21 @@ class estudiantes extends Controller
         // Validar los datos de entrada
         $request->validate([
             'nombres' => 'required|string|max:255',
-            'apellidos' => 'required|string|max:255',
-            'codsis' => 'required|string|unique:estudiantes,codsis',
-            'carnet' => 'required|string|unique:estudiantes,carnet',
+            'codsis' => 'required|numeric|digits:9|unique:estudiantes,codsis',
+            'correo' => 'required|string|unique:estudiantes,correo',
+            'carrera' => 'required|string|in:Ing. Sistemas,Ing. Informática',
         ]);
 
         // Crear un nuevo estudiante
         $estudiante = new Estudiante();
         $estudiante->nombres = $request->nombres;
-        $estudiante->apellidos = $request->apellidos;
         $estudiante->codsis = $request->codsis;
-        $estudiante->carnet = $request->carnet;
+        $estudiante->correo = $request->correo;
+        $estudiante->carrera = $request->carrera;
         $estudiante->save();
 
         // Redireccionar con un mensaje de éxito
-        return redirect()->route('estudiantes.create')->with('success', 'Estudiante registrado correctamente.');
+        return redirect()->route('registrarestudiante')->with('success', 'Estudiante registrado correctamente.');
     }
     /**
      * Display the specified resource.
