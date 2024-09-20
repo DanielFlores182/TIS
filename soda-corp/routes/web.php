@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\Test;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +15,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+// routes/web.php
+Route::get('/registro', function () {
+    return view('registrar_grupo');
+})->name('registro');
+
+Route::controller(Test::class)->group(function () {
+    Route::get('/test', 'test');
 });

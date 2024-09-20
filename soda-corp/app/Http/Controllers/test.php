@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use PDO; // Asegúrate de importar PDO
+use PDOException;
 
 class test extends Controller
 {
@@ -14,7 +16,7 @@ class test extends Controller
             'informatica'
         ) */
 
-        $host = 'http://isabelle.db.elephantsql.com';  // Dirección del host
+        $host = 'isabelle.db.elephantsql.com';  // Dirección del host
         $dbname = 'bymbbrry';  // Nombre de la base de datos
         $user = 'bymbbrry';  // Usuario de tu base de datos
         $password = 'vwqXSm7GuRBcQLjfNubKMWNer-Jek6PG';  // Contraseña de tu base de datos
