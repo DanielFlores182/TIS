@@ -17,10 +17,10 @@ class LoginController extends Controller
     {
         Log::info(json_encode($request));
         // Validar los datos del formulario
-        //$credentials = $request->validate([
-          //  'email' => ['required', 'email'],
-            //'password' => ['required'],
-        //]);
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
         $credentials = $request->only('email', 'password');
 
     if (Auth::attempt($credentials)) {
