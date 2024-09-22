@@ -20,7 +20,7 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         h1 {
-            color: #333;
+            color: #e74c3c;
             text-align: center;
         }
         form {
@@ -40,7 +40,7 @@
         button {
             margin-top: 20px;
             padding: 10px;
-            background-color: #007bff;
+            background-color: #000635;
             color: #fff;
             border: none;
             border-radius: 4px;
@@ -51,7 +51,7 @@
         }
         .nav-bar {
             width: 200px;
-            background-color: #007bff;
+            background-color: #000635;
             color: #fff;
             padding: 10px;
             position: fixed;
@@ -76,7 +76,7 @@
             padding: 8px;
         }
         .table th {
-            background-color: #007bff;
+            background-color: #000635;
             color: white;
         }
     </style>
