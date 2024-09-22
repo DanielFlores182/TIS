@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\Test;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +15,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+// Ruta para mostrar la vista registrar_grupo
+Route::get('/registro', function () {
+    return view('registrar_grupo');
+})->name('registro');
+
+Route::post('/grupo/guardar', [GrupoController::class, 'guardar'])->name('grupo.guardar');
+
+// Ruta para mostrar la vista informacion_grupo
+Route::get('/informacion', function () {
+    return view('informacion_grupo');
+})->name('informacion');
+
+Route::controller(Test::class)->group(function () {
+    Route::get('/test', 'test');
 });
