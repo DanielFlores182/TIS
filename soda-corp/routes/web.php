@@ -22,6 +22,8 @@ Route::get('/registro', function () {
     return view('registrar_grupo');
 })->name('registro');
 
+Route::post('/grupo/guardar', [GrupoController::class, 'guardar'])->name('grupo.guardar');
+
 // Ruta para mostrar la vista informacion_grupo
 Route::get('/informacion', function () {
     return view('informacion_grupo');

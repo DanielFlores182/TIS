@@ -82,7 +82,8 @@
     <div class="container" style="margin-left: 220px;">
         <h1>REGISTRO DE DATOS DEL GRUPO EMPRESARIAL/EQUIPO</h1>
         <p>Complete el siguiente formulario para registrar la información básica del equipo.</p>
-        <form>
+        <form action="{{ route('grupo.guardar') }}" method="POST">
+        @csrf  {{-- Token CSRF para seguridad --}}
             <div>
                 <label for="nombre_grupo">Nombre del grupo/equipo</label>
                 <input type="text" id="nombre_grupo" name="nombre_grupo">
@@ -98,7 +99,7 @@
                 <input type="text" id="integrantes" name="integrantes[]">
                 <button type="button" onclick="agregarIntegrante()">Agregar nuevo miembro</button>
             </div>
-            <button type="button">Guardar</button>
+            <button type="submit">Guardar</button>
         </form>
     </div>
     <script>
