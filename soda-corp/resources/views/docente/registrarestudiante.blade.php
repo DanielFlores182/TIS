@@ -7,40 +7,41 @@
 @section('titulo', 'Registrar')
 
 @section('contenido')
+    
     <div class="container">
         <h1>Registro Individual de Estudiantes</h1>
         
         <form action="{{ route('estudiantes.store') }}" method="POST">
             @csrf <!-- Protección contra ataques CSRF -->
             <div class="form-group">
-              <label for="nombres">Nombres:</label>
-             <input type="text" class="form-control" id="nombres" name="nombres" 
-              pattern="[A-Z\s]+" title="Solo se permiten letras mayúsculas y espacios"
-              minlength="3" maxlength="64" required>
-           </div>
-           <script>
+            <label for="nombres">Nombres:</label>
+            <input type="text" class="form-control" id="nombres" name="nombres" 
+                pattern="[A-Z\s]+" title="Solo se permiten letras mayúsculas y espacios"
+                minlength="3" maxlength="64" required>
+            </div>
+            <script>
                 document.getElementById('nombres').addEventListener('input', function (e) {
                 e.target.value = e.target.value.toUpperCase().replace(/[^A-Z\s]/g, '');
-             });
-          </script>
+            });
+            </script>
     
             
     <div class="form-group">
-              <label for="nombres">Apellidos:</label>
-             <input type="text" class="form-control" id="nombres" name="nombres" 
-              pattern="[A-Z\s]+" title="Solo se permiten letras mayúsculas y espacios"
-              minlength="3" maxlength="64" required>
-           </div>
-           <script>
+            <label for="nombres">Apellidos:</label>
+            <input type="text" class="form-control" id="nombres" name="nombres" 
+                pattern="[A-Z\s]+" title="Solo se permiten letras mayúsculas y espacios"
+                minlength="3" maxlength="64" required>
+            </div>
+            <script>
                 document.getElementById('nombres').addEventListener('input', function (e) {
                 e.target.value = e.target.value.toUpperCase().replace(/[^A-Z\s]/g, '');
-             });
-          </script>
+                });
+            </script>
             
             <div class="form-group">
     <label for="codsis">CodSis:</label>
     <input type="text" class="form-control" id="codsis" name="codsis" 
-           maxlength="9" required>
+        maxlength="9" required>
 </div>
 
 <script>
