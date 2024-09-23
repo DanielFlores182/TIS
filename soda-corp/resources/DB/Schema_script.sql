@@ -6,6 +6,9 @@
 -- -------------------------------------------------------------------------
 -- Table: user_n
 -- -------------------------------------------------------------------------
+CREATE DATABASE mi_base_datos;
+\c mi_base_datos;  -- Conectar a la base de datos recién c  reada
+----------------------------------------------------------------------------
 CREATE TABLE "user_n" (
   "id_usuario" bigserial NOT NULL,
   "nombre" CHARACTER VARYING NOT NULL,
