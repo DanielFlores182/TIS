@@ -15,18 +15,10 @@ Route::get('/login', function () {
 
 Route::post('/login/authenticate', [LoginController::class, 'authenticate'])->name('login.authenticate');
 
-Route::get('/registro', function () {
-    return view('registro');
-});
-//Route::get('/login', [LoginController::class, 'login'])->name('login');
-//Route::post('/login', [LoginController::class, 'authenticate'])->name('login.authenticate');
-//luego de presionar el boton paso2 de chat
-//Route::post('/inicio-sesion', [LoginController::class, 'authenticate'])->name('login');
+Route::get('/docente/registrarestudiante', [DocenteController::class, 'registrar'])->name('registrarestudiante');
 
-#Route::get('/docente/registrarestudiante', [DocenteController::class, 'registrar'])->name('registrarestudiante');
+Route::get('/docente/registrarestudiante', [estudiantes::class, 'create'])->name('registrarestudiante');
+Route::post('/estudiantes', [estudiantes::class, 'store'])->name('estudiantes.store');
 
-#Route::get('/login', function () {
- #   return view('login');
-#});
-
-#Route::get('/login', [LoginController::class, 'login'])->name('login');
+Route::post('/docente/registrarplanilla', [estudiantes::class, 'registrarPlanilla'])->name('registrarestudiantes');
+Route::get('/docente/registrarplanilla',[estudiantes::class,'registrar'])->name('vistaregistrarestudiantes');

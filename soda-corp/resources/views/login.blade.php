@@ -93,11 +93,11 @@
                     <button type="submit">Iniciar Sesión</button>
                 </form>
                 <div class="mt-5 flex justify-between text-xxs" >
-                    <a href="#" class="text-gray-700 dark:text-gray-500 underline hover:text-red-500">¿Olvidaste tu contraseña?</a>
+                    <!--<a href="#" class="text-gray-700 dark:text-gray-500 underline hover:text-red-500">¿Olvidaste tu contraseña?</a> -->
                     <a href="#" class="text-gray-700 dark:text-gray-500 underline hover:text-red-500">No tengo cuenta, crear una</a>
                 </div>
             </div>
-            <!-- Fin del formulario de login -->
+            
         </div>
     </body>
 </html>

@@ -1,0 +1,107 @@
+/* Contenedor del formulario */
+
+.container {
+    background-color: #162447;
+    /* Fondo oscuro */
+    padding: 30px;
+    border-radius: 20px;
+    width: 400px;
+    margin: 20px auto;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+
+/* Título del formulario */
+
+.container h1 {
+    color: white;
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+
+/* Estilo de los campos del formulario */
+
+.form-group label {
+    color: #dcdcdc;
+    /* Color de las etiquetas */
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-control {
+    background-color: #d3d3d3;
+    /* Fondo de los inputs */
+    border-radius: 30px;
+    border: none;
+    padding: 10px;
+    width: 100%;
+}
+
+.form-control:focus {
+    background-color: #bdbdbd;
+    outline: none;
+}
+
+
+/* Estilo de los botones */
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    width: 120px;
+    margin: 10px 5px;
+    color: rgb(212, 89, 89);
+    transition: background-color 0.3s ease;
+}
+
+.btn-success {
+    background-color: #28a745;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+
+/* Tabla */
+
+.table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #364f6b;
+    color: white;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #e3e3e3;
+}
