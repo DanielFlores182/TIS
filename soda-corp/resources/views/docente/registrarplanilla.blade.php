@@ -2,7 +2,6 @@
 
 @section('links')
     <link rel="stylesheet" href="{{ asset('css/inicio.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/planillaRegistro.css') }}">
 @endsection
 
 @section('titulo', 'Registro de Planilla de Estudiantes')
@@ -18,7 +17,7 @@
                 <input type="file" class="form-control" id="archivo" name="archivo" accept=".xlsx, .xls" required>
             </div>
             
-            <button type="submit" class="btn btn-success">Registrar</button>
+            <button type="submit" class="btn btn-success">Extraer</button>
             <button type="reset" class="btn btn-danger">Cancelar</button>
         </form>
 

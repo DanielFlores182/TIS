@@ -1,59 +1,47 @@
-* {
+*{
     margin: 0;
     padding: 0;
     border: 0;
 }
-
-.cabecera {
+.cabecera{
     position: fixed;
     width: 20%;
     height: 100%;
     background-color: #000630;
-    top: 0;
-    /* Posición desde la parte superior */
-    left: 0;
-    /* Posición desde el lado izquierdo */
+    top: 0; /* Posición desde la parte superior */
+    left: 0; /* Posición desde el lado izquierdo */
+
 }
 
 
 /* Estilo básico para el menú desplegable */
-
 .menu-item {
     position: relative;
-    list-style-type: none;
-    /* Elimina los puntos de la lista */
+    list-style-type: none; /* Elimina los puntos de la lista */
 }
 
 .submenu {
-    display: none;
-    /* Oculta el submenú por defecto */
-    position: absolute;
-    /* Posiciona el submenú debajo del elemento padre */
+    display: none; /* Oculta el submenú por defecto */
+    position: absolute; /* Posiciona el submenú debajo del elemento padre */
     left: 0;
-    top: 100%;
-    /* Ajusta la posición para que aparezca debajo del elemento padre */
-    background-color: #000630;
-    /* Color de fondo del submenú */
-    list-style-type: none;
-    /* Elimina los puntos de la lista */
+    top: 100%; /* Ajusta la posición para que aparezca debajo del elemento padre */
+    background-color: #000630; /* Color de fondo del submenú */
+    list-style-type: none; /* Elimina los puntos de la lista */
     padding: 0;
     margin: 0;
-    list-style-type: none;
-    /* Elimina los puntos de la lista */
+    list-style-type: none; /* Elimina los puntos de la lista */
+
 }
 
 .submenu li {
     margin: 10px 0 30px 0;
     padding: 5px;
-    font-size: 12px;
-    /* Tamaño del texto dentro del submenú */
+    font-size: 12px; /* Tamaño del texto dentro del submenú */
 }
 
 .submenu li a {
-    text-decoration: none;
-    /* Elimina el subrayado */
-    color: #ffffff;
-    /* Color del texto */
+    text-decoration: none; /* Elimina el subrayado */
+    color: #ffffff; /* Color del texto */
 }
 
 .menu-toggle {
@@ -61,82 +49,75 @@
     padding: 10px;
     color: #ffffff;
     text-decoration: none;
-    background-color: #000630;
-    /* Fondo del botón */
+    background-color: #000630; /* Fondo del botón */
 }
 
 .menu-toggle:hover {
-    background-color: #001642;
-    /* Fondo al pasar el ratón */
+    background-color: #001642; /* Fondo al pasar el ratón */
+    
 }
 
 .opcionsubmenu:hover {
-    background-color: #001642;
-    /* Fondo al pasar el ratón */
+    background-color: #001642; /* Fondo al pasar el ratón */
+    
 }
-
 .menu-item.active .submenu {
     display: block;
 }
 
 
-/*Usuario*/
 
-.usuario {
+/*Usuario*/
+.usuario{
     position: fixed;
 }
-
-.usuario ul {
+.usuario ul{
     padding: 20% 0 10% 18px;
 }
 
-.imagen img {
+.imagen img{
     width: 100px;
     height: 100px;
     margin: 10% 0 10% 0;
 }
-
 .imagen {
     text-align: center;
 }
 
-.menu ul {
+.menu ul{
     font-size: 12px;
 }
-
-.menu ul hr {
+.menu ul hr{
     background-color: #f5f6f7;
     height: 3%;
     margin: 0 0 0 0;
     border: none;
 }
-
 .menu li {
+
     height: 3%;
     z-index: 1;
     margin: 10% 0 10% 18px;
     border: none;
 }
-
 p {
-    font-size: 25px;
+    font-size: 25px; 
     font-weight: 800;
     color: #ffffff;
     margin: 20% 0 10% 18px;
 }
 
-a {
+a{
     text-decoration: none;
     font-weight: 800;
     color: #ffffff;
 }
-
-a:hover {
+a:hover{
     color: #ffffff;
     text-decoration: none;
 }
 
-body {
+body{
     min-height: 100vh;
     background-color: #f5f6f7;
     font-family: 'inter';
@@ -145,19 +126,18 @@ body {
     flex-direction: column;
 }
 
-.contenedor {
+.contenedor{
     display: flex;
     justify-content: center;
 }
 
-.cont1 {
+.cont1{
     width: 100%;
     display: flex;
     justify-content: center;
     margin-bottom: 30px;
 }
-
-.cont2 {
+.cont2{
     width: 85%;
     display: flex;
     flex-direction: column;
@@ -165,27 +145,22 @@ body {
     max-width: 700px;
 }
 
-
 /* Estandar de H1 y h2, imagen*/
-
-h1,
-h2 {
+h1, h2{
     font-size: 20px;
     color: #194F82;
     margin-bottom: 10px;
     font-weight: bold;
 }
 
-h2 {
+h2{
     font-size: 16px;
 }
-
-.imgEst {
+.imgEst{
     width: 100%;
     height: auto;
     margin-bottom: 10px;
     border-radius: 3px;
 }
-
-
 /* Termina estandar de h1 h2, imagen */
+
