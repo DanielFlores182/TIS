@@ -1,126 +1,185 @@
-<!-- resources/views/informacion_grupo.blade.php -->
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Datos del Grupo Empresarial/Equipo</title>
+    <title>Nombre de la Empresa</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #f7f7f7;
             margin: 0;
             padding: 0;
-        }
-        .container {
-            width: 80%;
-            margin: 20px auto;
-            background-color: #fff;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            color: #e74c3c;
-            text-align: center;
-        }
-        form {
             display: flex;
-            flex-direction: column;
+            height: 100vh;
         }
-        label {
-            margin-top: 10px;
-            color: #555;
-        }
-        input[type="text"], select {
-            padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        button {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #000635;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .nav-bar {
-            width: 200px;
-            background-color: #000635;
-            color: #fff;
-            padding: 10px;
-            position: fixed;
-            height: 100%;
-        }
-        .nav-bar a {
-            color: #fff;
-            text-decoration: none;
-            display: block;
-            padding: 10px 0;
-        }
-        .nav-bar a:hover {
-            background-color: #0056b3;
-        }
-        .table {
-            width: 100%;
-            margin-top: 20px;
-            border-collapse: collapse;
-        }
-        .table th, .table td {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-        .table th {
+
+        /* Estilos del menú de navegación */
+        nav {
+            width: 20%;
             background-color: #000635;
             color: white;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        nav h2 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-bottom: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Estilos del contenido principal */
+        .container {
+            color: black;
+            width: 80%;
+            max-width: 800px;
+            background-color: #f7f7f7;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: black;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .section {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .group-leader {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .group-members {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .group-members table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .group-members th,
+        .group-members td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .group-members th {
+            background-color: #f1f1f1;
+        }
+
+        .update-button {
+            width: 100%;
+            padding: 10px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .update-button:hover {
+            background-color: darkred;
         }
     </style>
 </head>
+
 <body>
-    <div class="nav-bar">
-        <h2>Menú</h2>
-        <a href="#">Tareas y actividades</a>
-        <a href="#">Historial de evaluaciones</a>
-        <a href="#">Ver el grupo</a>
-        <a href="#">Evaluación</a>
-        <a href="#">Darme de baja en TIS</a>
+
+    <!-- Menú de navegación a la izquierda -->
+    <nav>
+        <h2>Bienvenido Estudiante</h2>
+        <ul>
+            <li><a href="#">Tareas Pendientes</a></li>
+            <li><a href="#">Cronograma de actividades</a></li>
+            <li><a href="#">Historial de evaluaciones</a></li>
+            <li><a href="#">Ver grupo</a></li>
+            <li><a href="#">Evaluar</a></li>
+            <li><a href="#">Darme de baja en Tis</a></li>
+        </ul>
         <a href="#">Cerrar Sesión</a>
-    </div>
-    <div class="container" style="margin-left: 220px;">
+    </nav>
+
+    <!-- Contenido principal -->
+    <div class="container">
         <h1>NOMBRE DE LA EMPRESA</h1>
-        <form>
-            <div>
-                <label for="nombre_lider">Nombre completo del líder del grupo</label>
-                <input type="text" id="nombre_lider" name="nombre_lider">
+
+        <div class="section">
+            <label>Líder de grupo</label>
+            <p class="group-leader">Nombre completo del líder del grupo</p>
+        </div>
+
+        <div class="section">
+            <label>Integrantes del grupo/equipo</label>
+            <div class="group-members">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nombre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Nombre de integrante 1</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Nombre de integrante 2</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th colspan="2">Integrantes del grupo/equipo</th>
-                    </tr>
-                    <tr>
-                        <th>#</th>
-                        <th>Nombre</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Nombre de integrante 1</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Nombre de integrante 2</td>
-                    </tr>
-                </tbody>
-            </table>
-            <button type="button">ACTUALIZAR DATOS</button>
-        </form>
+        </div>
+
+        <button class="update-button">ACTUALIZAR DATOS</button>
     </div>
+
 </body>
+
 </html>
