@@ -2,6 +2,7 @@
 
 @section('links')
     <link rel="stylesheet" href="{{ asset('css/inicio.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/plantillaRegistro.css') }}">
 @endsection
 
 @section('titulo', 'Registrar')
@@ -43,7 +44,7 @@
 
             <div class="form-group">
                 <label for="codsis">Correo:</label>
-                <input type="text" class="form-control" id="codsis" name="codsis" required>
+                <input type="email" class="form-control" id="correo" name="correo" required>
             </div>
             <div class="form-group">
                 <label for="carrera">Carrera:</label>

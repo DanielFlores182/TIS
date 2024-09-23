@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Estudiante;
 use Illuminate\Http\Request;
 use App\Http\Controllers\scripts\planilla;
 class estudiantes extends Controller
@@ -62,19 +62,25 @@ class estudiantes extends Controller
         // Validar los datos de entrada
         $request->validate([
             'nombres' => 'required|string|max:255',
-            'codsis' => 'required|numeric|digits:9|unique:estudiantes,codsis',
-            'correo' => 'required|string|unique:estudiantes,correo',
-            'carrera' => 'required|string|in:Ing. Sistemas,Ing. Informática',
+            'codsis' => 'required|string|digits:9|unique:estudiantes,codsis',
+            'correo' => 'required|email|unique:estudiantes,correo',
+            'carrera' => 'required|string|in:sistemas,informatica',
+        ], [
+            'nombres.required' => 'El campo de nombres es obligatorio.',
+            'codsis.unique' => 'El código SIS ya está registrado.',
+            'correo.email' => 'Por favor, ingresa un correo electrónico válido.',
+            'carrera.in' => 'Selecciona una carrera válida.',
         ]);
+        
 
         // Crear un nuevo estudiante
         $estudiante = new Estudiante();
-        $estudiante->nombres = $request->nombres;
+        $estudiante->nombres = strtoupper($request->nombres); // Asegúrate de que se guarden en mayúsculas
         $estudiante->codsis = $request->codsis;
-        $estudiante->correo = $request->correo;
-        $estudiante->carrera = $request->carrera;
-        $estudiante->save();
-
+        $estudiante->correo = strtolower($request->correo); // Guardar en minúsculas
+        $estudiante->carrera = ucfirst($request->carrera); // Capitalizar la primera letra
+        $estudiante->save(); 
+         
         // Redireccionar con un mensaje de éxito
         return redirect()->route('registrarestudiante')->with('success', 'Estudiante registrado correctamente.');
     }
